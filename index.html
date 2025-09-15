@@ -1,1 +1,389 @@
-Hello
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CubingAlgs.com - Coming Soon</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0a0a2a, #1a1a4a, #2a2a6a);
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+        }
+        
+        .cube {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: float 6s infinite ease-in-out;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(20px, -15px) rotate(5deg); }
+            50% { transform: translate(-15px, 10px) rotate(-5deg); }
+            75% { transform: translate(10px, 15px) rotate(3deg); }
+        }
+        
+        .container {
+            max-width: 900px;
+            text-align: center;
+            z-index: 10;
+            background: rgba(10, 10, 42, 0.8);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+        }
+        
+        .logo {
+            margin-bottom: 30px;
+        }
+        
+        .logo h1 {
+            font-size: 4rem;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #ff8a00, #e52e71, #6a11cb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .logo .cube-icon {
+            font-size: 3.5rem;
+            margin: 0 10px;
+            color: #6a11cb;
+            animation: spin 8s infinite linear;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.2); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+        
+        .tagline {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: #f8f8f8;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .description {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 40px;
+            color: #d0d0f0;
+            max-width: 800px;
+        }
+        
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .feature {
+            background: rgba(20, 20, 60, 0.6);
+            padding: 20px;
+            border-radius: 15px;
+            width: 250px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(100, 100, 255, 0.2);
+        }
+        
+        .feature:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+        
+        .feature i {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #6a11cb;
+        }
+        
+        .feature h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: #ff8a00;
+        }
+        
+        .feature p {
+            font-size: 1rem;
+            color: #b0b0ff;
+        }
+        
+        .countdown {
+            margin-bottom: 40px;
+        }
+        
+        .countdown h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #f8f8f8;
+        }
+        
+        .timer {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .time-unit {
+            background: rgba(20, 20, 60, 0.8);
+            padding: 15px;
+            border-radius: 10px;
+            min-width: 80px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .time-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #ff8a00;
+        }
+        
+        .time-label {
+            font-size: 0.9rem;
+            color: #b0b0ff;
+            text-transform: uppercase;
+        }
+        
+        .notify {
+            margin-bottom: 30px;
+        }
+        
+        .notify h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #f8f8f8;
+        }
+        
+        .notify-form {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .notify-input {
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            width: 300px;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.9);
+        }
+        
+        .notify-button {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(45deg, #6a11cb, #2575fc);
+            color: white;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .notify-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+        }
+        
+        .social {
+            margin-top: 30px;
+        }
+        
+        .social a {
+            color: #fff;
+            font-size: 1.8rem;
+            margin: 0 15px;
+            transition: transform 0.3s, color 0.3s;
+        }
+        
+        .social a:hover {
+            color: #ff8a00;
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            margin-top: 40px;
+            color: #a0a0ee;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .logo h1 {
+                font-size: 3rem;
+            }
+            
+            .tagline {
+                font-size: 1.5rem;
+            }
+            
+            .description {
+                font-size: 1.1rem;
+            }
+            
+            .notify-form {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .notify-input {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated background cubes -->
+    <div class="cube" style="top: 10%; left: 5%; animation-delay: 0s;"></div>
+    <div class="cube" style="top: 20%; left: 90%; animation-delay: 1s;"></div>
+    <div class="cube" style="top: 50%; left: 15%; animation-delay: 2s;"></div>
+    <div class="cube" style="top: 70%; left: 80%; animation-delay: 3s;"></div>
+    <div class="cube" style="top: 30%; left: 70%; animation-delay: 4s;"></div>
+    <div class="cube" style="top: 85%; left: 10%; animation-delay: 5s;"></div>
+    
+    <div class="container">
+        <div class="logo">
+            <h1>CubingAlgs<i class="fas fa-cube cube-icon"></i>com</h1>
+            <div class="tagline">The Ultimate Algorithm Comparison Hub</div>
+        </div>
+        
+        <div class="description">
+            <p>CubingAlgs.com is coming soon to revolutionize how speedcubers learn, compare, and rate algorithms! We're building the most comprehensive platform for algorithm analysis, with community-driven ratings, 3D visualizations, and personalized recommendations.</p>
+        </div>
+        
+        <div class="features">
+            <div class="feature">
+                <i class="fas fa-code-compare"></i>
+                <h3>Compare Algorithms</h3>
+                <p>Side-by-side comparison of algorithms with execution metrics, move counts, and ratings.</p>
+            </div>
+            
+            <div class="feature">
+                <i class="fas fa-star"></i>
+                <h3>Rate & Review</h3>
+                <p>Share your experience with algorithms and help others find the best ones for their style.</p>
+            </div>
+            
+            <div class="feature">
+                <i class="fas fa-cube"></i>
+                <h3>3D Visualizations</h3>
+                <p>Watch algorithms in action with interactive 3D visualizations from all angles.</p>
+            </div>
+        </div>
+        
+        <div class="countdown">
+            <h2>Coming Soon</h2>
+            <div class="timer">
+                <div class="time-unit">
+                    <div class="time-value" id="days">00</div>
+                    <div class="time-label">Days</div>
+                </div>
+                <div class="time-unit">
+                    <div class="time-value" id="hours">00</div>
+                    <div class="time-label">Hours</div>
+                </div>
+                <div class="time-unit">
+                    <div class="time-value" id="minutes">00</div>
+                    <div class="time-label">Minutes</div>
+                </div>
+                <div class="time-unit">
+                    <div class="time-value" id="seconds">00</div>
+                    <div class="time-label">Seconds</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="notify">
+            <h2>Get Notified at Launch</h2>
+            <form class="notify-form">
+                <input type="email" class="notify-input" placeholder="Enter your email address" required>
+                <button type="submit" class="notify-button">Notify Me</button>
+            </form>
+        </div>
+        
+        <div class="social">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-discord"></i></a>
+        </div>
+    </div>
+    
+    <div class="copyright">
+        &copy; 2023 CubingAlgs.com - All rights reserved
+    </div>
+    
+    <script>
+        // Countdown timer
+        function updateCountdown() {
+            const launchDate = new Date('2023-12-31T23:59:59');
+            const now = new Date();
+            const diff = launchDate - now;
+            
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        }
+        
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+        
+        // Form submission
+        document.querySelector('.notify-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.querySelector('.notify-input').value;
+            alert(`Thanks! We'll notify you at ${email} when we launch.`);
+            document.querySelector('.notify-input').value = '';
+        });
+        
+        // Create more animated cubes
+        function createCubes() {
+            const body = document.querySelector('body');
+            for (let i = 0; i < 10; i++) {
+                const cube = document.createElement('div');
+                cube.classList.add('cube');
+                cube.style.top = Math.random() * 100 + '%';
+                cube.style.left = Math.random() * 100 + '%';
+                cube.style.width = (Math.random() * 30 + 10) + 'px';
+                cube.style.height = (Math.random() * 30 + 10) + 'px';
+                cube.style.animationDelay = Math.random() * 6 + 's';
+                cube.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                body.appendChild(cube);
+            }
+        }
+        
+        createCubes();
+    </script>
+</body>
+</html>
